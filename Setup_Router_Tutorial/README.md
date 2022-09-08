@@ -26,4 +26,4 @@ See OptionalSetup.md located in this directory for additional information on fir
 If you need to connect to the Villanova network, you will have to create a user account with VUGuest and use that Wi-Fi instead.
 - If the connection is succesful, you will get a "Success" message and you will be sent back to the main tab.
 The information of the network you have connected to will be displayed on the main screen shortly. 
-![Successful Connection](/Images/Successful_Connection.jpg)
+![Successful Connection](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Router_tutorial/Setup_Router_Tutorial/Images/Successful_Connection.jpg)
