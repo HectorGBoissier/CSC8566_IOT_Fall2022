@@ -20,10 +20,9 @@ Connect to the Wi-fi using the new password you created and refresh the Admin Pa
 Using the repeater means connecting the router to another existing wireless network and retransmitting the signal.
 
 - On the main **Internet** tab on the Admin Panel, scroll down and click **_scan_** in the **Repeater** section.
-- Choose a SSID from the drop-down list and enter its password.
-Note: The GL-MT300N-V2(Mango) with certificate-based routing to connect to VUMobile without upgrading the firmware beforehand. 
-See OptionalSetup.md located in this directory for additional information on firmware upgrades.
-If you need to connect to the Villanova network, you will have to create a user account with VUGuest and use that Wi-Fi instead.
+- Choose a SSID from the drop-down list and enter that Wi-Fi's password.
+Note: The GL-MT300N-V2(Mango) is not able to establish certificate-based routing with VUMobile. 
+If you need to connect to the Villanova network, you will have to create a user account with VUGuest first and then setup the repeater.
 - If the connection is succesful, you will get a "Success" message and you will be sent back to the main tab.
 The information of the network you have connected to will be displayed on the main screen shortly. 
 ![Successful Connection](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Router_tutorial/Setup_Router_Tutorial/Images/Successful_Connection.jpg)
