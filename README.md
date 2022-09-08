@@ -3,7 +3,7 @@ Internet of Things Investigation Repo
 
 @Author Hector Garcia Boissier
 
-##Motivation
+## Motivation
 
 This repo will be used for my class work during the Fall 2022 IoT course at Villanova University.
 The goal is to keep all assignment work and project code in the same repository.
