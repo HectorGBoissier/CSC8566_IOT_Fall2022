@@ -1,7 +1,5 @@
 # Router Setup 
 
-@Author Hector Garcia Boissier
-
 ## Tutorial for GL.iNet GL-MT300N-V2(Mango) 
 
 - Power on your router by pluging in the power cable.
@@ -26,5 +24,6 @@ Using repeater means connecting the router to another existing wireless network
 Note: The GL-MT300N-V2(Mango) with certificate-based routing to connect to VUMobile without upgrading the firmware beforehand. 
 See OptionalSetup.md located in this directory for additional information on firmware upgrades.
 If you need to connect to the Villanova network, you will have to create a user account with VUGuest and use that Wi-Fi instead.
-- If the connection is succesful, you will see the information of the network on the main screen.
-See attached image for reference.
+- If the connection is succesful, you will get a "Success" message and you will be sent back to the main tab.
+The information of the network you have connected to will be displayed on the main screen shortly. 
+
