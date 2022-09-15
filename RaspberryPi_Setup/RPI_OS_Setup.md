@@ -34,15 +34,63 @@ If you need help setting up your personal travel router, you can follow the [Rou
 
 2. Configure DietPi
 Now you will configure the boot image files that were flashed to the SD card. Copy dietpi.txt and dietpi-wifi.txt to a temporary directory so you can edit them safely. Make sure to save an additional copy if case you need to retrieve the originals.
-- Edit dietpi-wifi.txt
+- Edit dietpi-wifi.txt to add your router's SSID and its password.
+      ```
+      aWIFI_SSID[0]='**Your router's SSID**'
+      aWIFI_KEY[0]='**The SSID password**'
+      ```
+- Edit dietpi.txt to change the configuration to the following values
+      ```
+      AUTO_SETUP_LOCALE=en_US.UTF-8
+      AUTO_SETUP_KEYBOARD_LAYOUT=us
+      AUTO_SETUP_TIMEZONE=America/New_York
+      AUTO_SETUP_NET_ETHERNET_ENABLED=0
+      AUTO_SETUP_NET_WIFI_ENABLED=1
+      AUTO_SETUP_NET_WIFI_COUNTRY_CODE=US
+      AUTO_SETUP_DHCP_TO_STATIC=1
+      AUTO_SETUP_NET_HOSTNAME=DietPi_{YOUR_INITIALS}
+      AUTO_SETUP_HEADLESS=1
+      AUTO_SETUP_AUTOSTART_TARGET_INDEX=1
+      SURVEY_OPTED_IN=0
+      CONFIG_SERIAL_CONSOLE_ENABLE=1
+      ```
 
-- Edit dietpi.txt 
+Note that these lines do not appear one after another in the file. You will need to find each variable in the document and change the corresponding value.
+Remeber to replace {YOUR_INITIALS} in the AUTO_SETUP_NET_HOSTNAME with a locally unique string. In my case, I changed the value to *DietPi_HGB*.
+
+- Save the documents and copy them back to their original location on your SD card. 
+- Make sure to safely eject your SD card from your laptop. In the File Explorer window, you can do this by right-clicking the SD card and selecting *Eject*.
 
 
 3. Install SD card and boot up the RPI
-
+- Insert your SD in the Raspberry Pi. In my RPI 4, the microSD slot is located in the bottom.
+- Power on your Raspberry Pi. I used my laptop for power by using a USB to USB-C cable.
+- Here you will see a red light and a falshing green light come up on the board. Wait until the green light stops flashing. I only had to wait a couple of minutes but it could take up 10 minutes depending on your local network load.
 
 4. Login to the RPI
+- Find IP address of your Raspberry Pi by going to your router's Admin website. For GL.iNet router is http://192.168.8.1
+
+Insert picture of Admin Website connection
+- Use SSH to login to your Pi.
+You can do this from your Command Prompt or using Putty. The default password is *dietpi*.
+   ```
+   ssh root@IpAddress
+   password: dietpi
+   ```
+Note: If you are using a GL.iNet GL-MT300N-V2(Mango) you may encounter issues connecting to the DNS server when connected to the Villanova University's WiFi.
+This will result in the automatic updates after the first logon to fail. See the following error.
+
+Insert picture of DNS error.
+
+It is recommended to use your mobile phone hotspot or the tethering method to setup the router connection if you encounter this issue while using the university's network.
+To learn how to do the tethering method, please refer to the following tutorial [Optional Router Setup](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/Setup_Router_Tutorial/OptionalSetup.md)
+ 
+5. Finish configuration of DietPi
+Please make sure to change the default root password *dietpi*. You can also setup a user account password.
+The RPI will likely automatically prompt you to update these passwords after the initial updates. 
+If this doesn't happen due to connection issues or you skip this step, you can always change them later by using the DietPi-Config command to access the configuration menu.
+Here you can press *Security Options* to update the password at any time.
+To continue installing other platform software, please refer to [IOT Plaform Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/IOT_Platform_Install.md)
 
 
 ## References
