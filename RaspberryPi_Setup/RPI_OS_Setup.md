@@ -68,7 +68,7 @@ Remember to replace {YOUR_INITIALS} in the AUTO_SETUP_NET_HOSTNAME variable. In 
 
 3.Install SD card and boot up the RPI
 - Insert your microSD card in the Raspberry Pi. The microSD slot is located on the bottom side of the RPI 4.
-- Power on your Raspberry Pi. I used my laptop for power by using a USB to USB-C cable.
+- Power on your Raspberry Pi. I used my laptop for power by using a USB to USB-C cable. Here is my personal setup:
 
 Insert Picture of setup
 
@@ -90,20 +90,24 @@ Here I received a notification saying that "The authenticity of host 'IpAdress' 
 **Note**: If you are using a GL.iNet GL-MT300N-V2(Mango) you may encounter issues connecting to the DNS server when connected to the Villanova University's WiFi.
 This will result in the automatic updates after the first logon to fail. See the following error that I encountered as a result of VUGuest blocking ping traffic.
 
-Insert picture of DNS error.
-
+![Connection Error](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/Images/DNS-error.jpg)
 If you encounter this error, I recommended using your phone hotspot or the tethering method to setup the router connection. 
 To learn how to setup **Tethering** on your router, please refer to the following tutorial [Optional Router Setup](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/Setup_Router_Tutorial/OptionalSetup.md)
- 
+
+If your RaspberryPi sucessfully finishes booting up and running the initial updates, you will see the following command screen, where you can type commands from the root account
+
+![Succesful Connection](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/Images/DietPi-initial-updates-finished.JPG)
+
+
 5.Finish configuration of DietPi
 
 - DietPi has two accounts by default "**root**" and "**dietpi**". Please make sure to change the global software password (or root password) from the default *dietpi* to a password of your choice. You can also change the default unix user password.
 - The RPI will automatically prompt you to update these passwords after the initial updates. 
-- If you are not automatically prompted due to connection issues or you skip this step, you can always change them later by using the *DietPi-Config* command to access the configuration menu. There you can press *Security Options* to update both passwords at any time.
+- If you are not automatically prompted due to connection issues or you skip this step, you can always change them later by using the *dietPi-config* command to access the configuration menu. There you can press **Security Options** to update both passwords at any time.
 
 6.Further Software Installs
 
-To continue installing other platform software, please refer to the next tutorial [IOT Plaform Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/IOT_Platform_Install.md)
+To continue installing platform software, please refer to the next tutorial [IOT Plaform Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/IOT_Platform_Install.md)
 
 ## References
 Readme.md by Professor Schragger: https://github.com/pschragger/IOT_Tutorials_for_VU/tree/main/RPI_BOOT_WIFI_tutorial
