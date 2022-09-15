@@ -36,25 +36,25 @@ If you need help setting up your personal travel router, you can follow the [Rou
 
 Now you will configure the boot image files that were flashed to the SD card. Copy dietpi.txt and dietpi-wifi.txt to a temporary directory so you can edit them safely. Make sure to save an additional copy if case you need to retrieve the originals.
 - Edit *dietpi-wifi.txt* by typing your router's SSID and password as shown in the following variables. Do not delete the '' punctuation marks.
-      ```
-      aWIFI_SSID[0]='Your router's SSID'
-      aWIFI_KEY[0]='The ssid password'
-      ```
+   ```
+   aWIFI_SSID[0]='Your router's SSID'
+   aWIFI_KEY[0]='The ssid password'
+   ```
 - Edit *dietpi.txt* to change the configuration to the following values:
-      ```
-      AUTO_SETUP_LOCALE=en_US.UTF-8
-      AUTO_SETUP_KEYBOARD_LAYOUT=us
-      AUTO_SETUP_TIMEZONE=America/New_York
-      AUTO_SETUP_NET_ETHERNET_ENABLED=0
-      AUTO_SETUP_NET_WIFI_ENABLED=1
-      AUTO_SETUP_NET_WIFI_COUNTRY_CODE=US
-      AUTO_SETUP_DHCP_TO_STATIC=1
-      AUTO_SETUP_NET_HOSTNAME=DietPi_{YOUR_INITIALS}
-      AUTO_SETUP_HEADLESS=1
-      AUTO_SETUP_AUTOSTART_TARGET_INDEX=1
-      SURVEY_OPTED_IN=0
-      CONFIG_SERIAL_CONSOLE_ENABLE=1
-      ```
+   ```
+   AUTO_SETUP_LOCALE=en_US.UTF-8
+   AUTO_SETUP_KEYBOARD_LAYOUT=us
+   AUTO_SETUP_TIMEZONE=America/New_York
+   AUTO_SETUP_NET_ETHERNET_ENABLED=0
+   AUTO_SETUP_NET_WIFI_ENABLED=1
+   AUTO_SETUP_NET_WIFI_COUNTRY_CODE=US
+   AUTO_SETUP_DHCP_TO_STATIC=1
+   AUTO_SETUP_NET_HOSTNAME=DietPi_{YOUR_INITIALS}
+   AUTO_SETUP_HEADLESS=1
+   AUTO_SETUP_AUTOSTART_TARGET_INDEX=1
+   SURVEY_OPTED_IN=0
+   CONFIG_SERIAL_CONSOLE_ENABLE=1
+   ```
 Note that these lines do not appear one after another in the file. You will need to find each variable in the document and change the corresponding value.
 Remember to replace {YOUR_INITIALS} in the AUTO_SETUP_NET_HOSTNAME variable. In my case, I changed the value to *DietPi_HGB*.
 
