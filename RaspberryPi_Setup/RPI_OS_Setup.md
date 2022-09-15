@@ -66,14 +66,14 @@ Remember to replace {YOUR_INITIALS} in the AUTO_SETUP_NET_HOSTNAME variable. In 
 - Insert your microSD card in the Raspberry Pi. The microSD slot is located on the bottom side of the RPI 4.
 - Power on your Raspberry Pi. I used my laptop for power by using a USB to USB-C cable. Here is my personal setup:
 
-Insert Picture of setup
+![Personal Hardware Setup](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/Images/Hardware-setup.jpg)
 
 - Here you will see a red light and a flashing green light come up on the board. Wait until the green light stops flashing. I only had to wait a couple of minutes but it could take up to 10 depending on your local network load.
 
 4.Login to the RPI
 - Find IP address of your Raspberry Pi by going to your router's Admin website (http://192.168.8.1 For GL.iNet router). If your device has booted up and the *dietpi* configuration files were edited correctly, you should see the **DietPi** on your **CLIENTS** page.
 
-Insert picture of Admin Website connection
+![Admin Website Clients](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/Images/Admin-clients.JPG)
 
 - Use SSH to login to your Pi.
 You can do this from your Command Prompt using the following command. When prompt to enter the password, use the default password *dietpi*.
