@@ -6,6 +6,7 @@ The purpose of this directory is to serve as a tutorial for the setup of a Raspb
 The tutorial includes:
 
 [Initial RPI OS Setup](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/RPI_OS_Setup.md)
+
 [IOT Plaform Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/IOT_Platform_Install.md)
 
 
