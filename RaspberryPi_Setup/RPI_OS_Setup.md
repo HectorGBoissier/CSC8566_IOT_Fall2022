@@ -14,7 +14,7 @@ You will need the following equipment to complete the setup:
 - **Device**: RaspberryPi 4. Model B with 2GB RAM.
 - **Memory Card**: SanDisk Ultra 16GB micro SD.
 
-Before you begin this tutorial, you'll need to have a previously configured WiFi router to create a local portable network for your Raspberry Pi.
+Before you begin, you'll need to have a previously configured WiFi router to create a local portable network for your Raspberry Pi.
 If you need help setting up your personal travel router, you can follow the [Router Setup Tutorial](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/tree/main/Setup_Router_Tutorial).
 
 ## Required Software
@@ -33,15 +33,16 @@ If you need help setting up your personal travel router, you can follow the [Rou
  
 
 2.Configure DietPi
+
 Now you will configure the boot image files that were flashed to the SD card. Copy dietpi.txt and dietpi-wifi.txt to a temporary directory so you can edit them safely. Make sure to save an additional copy if case you need to retrieve the originals.
-- Edit *dietpi-wifi.txt* by typing your router's SSID and password between the '' marks in the following variables:
+- Edit *dietpi-wifi.txt* by typing your router's SSID and password as shown in the following variables. Do not delete the '' punctuation marks.
 
       ```
       aWIFI_SSID[0]='Your router's SSID'
       aWIFI_KEY[0]='The ssid password'
       ```
 
-- Edit dietpi.txt to change the configuration to the following values:
+- Edit *dietpi.txt* to change the configuration to the following values:
 
       ```
       AUTO_SETUP_LOCALE=en_US.UTF-8
@@ -74,30 +75,35 @@ Insert Picture of setup
 - Here you will see a red light and a flashing green light come up on the board. Wait until the green light stops flashing. I only had to wait a couple of minutes but it could take up to 10 depending on your local network load.
 
 4.Login to the RPI
-- Find IP address of your Raspberry Pi by going to your router's Admin website. For GL.iNet router is http://192.168.8.1
+- Find IP address of your Raspberry Pi by going to your router's Admin website (http://192.168.8.1 For GL.iNet router). If your device has booted up and the *dietpi* configuration files were edited correctly, you should see the **DietPi** on your **CLIENTS** page.
 
 Insert picture of Admin Website connection
+
 - Use SSH to login to your Pi.
 You can do this from your Command Prompt using the following command. When prompt to enter the password, use the default password *dietpi*.
    ```
    ssh root@IpAddress
    password: dietpi
    ```
-Note: If you are using a GL.iNet GL-MT300N-V2(Mango) you may encounter issues connecting to the DNS server when connected to the Villanova University's WiFi.
+Here I received a notification saying that "The authenticity of host 'IpAdress' can't be established." Type yes to continue to establish the SSH connection.
+
+**Note**: If you are using a GL.iNet GL-MT300N-V2(Mango) you may encounter issues connecting to the DNS server when connected to the Villanova University's WiFi.
 This will result in the automatic updates after the first logon to fail. See the following error that I encountered as a result of VUGuest blocking ping traffic.
 
 Insert picture of DNS error.
 
 If you encounter this error, I recommended using your phone hotspot or the tethering method to setup the router connection. 
-To learn how to do the tethering method, please refer to the following tutorial [Optional Router Setup](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/Setup_Router_Tutorial/OptionalSetup.md)
+To learn how to setup **Tethering** on your router, please refer to the following tutorial [Optional Router Setup](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/Setup_Router_Tutorial/OptionalSetup.md)
  
-5. Finish configuration of DietPi 
-Please make sure to change the default root password *dietpi*. You can also setup a user account password.
-The RPI will likely automatically prompt you to update these passwords after the initial updates. 
-If this doesn't happen due to connection issues or you skip this step, you can always change them later by using the DietPi-Config command to access the configuration menu.
-Here you can press *Security Options* to update the password at any time.
-To continue installing other platform software, please refer to [IOT Plaform Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/IOT_Platform_Install.md)
+5.Finish configuration of DietPi
 
+- DietPi has two accounts by default "**root**" and "**dietpi**". Please make sure to change the global software password (or root password) from the default *dietpi* to a password of your choice. You can also change the default unix user password.
+- The RPI will automatically prompt you to update these passwords after the initial updates. 
+- If you are not automatically prompted due to connection issues or you skip this step, you can always change them later by using the *DietPi-Config* command to access the configuration menu. There you can press *Security Options* to update both passwords at any time.
+
+6.Further Software Installs
+
+To continue installing other platform software, please refer to the next tutorial [IOT Plaform Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/IOT_Platform_Install.md)
 
 ## References
 Readme.md by Professor Schragger: https://github.com/pschragger/IOT_Tutorials_for_VU/tree/main/RPI_BOOT_WIFI_tutorial
