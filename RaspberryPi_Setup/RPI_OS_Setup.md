@@ -105,6 +105,7 @@ If your RaspberryPi sucessfully finishes booting up and running the initial upda
 
 In the following tutorial, we will begin installing IoT platform software starting with the *dietpi-software* command. This will open a menu where you can search and install software to unlock more features for your RaspberryPi:
 ![DietPi-Software-Menu](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/Images/Dietpi-software.jpg)
+
 To continue installing platform software, please refer to the next tutorial [IOT Plaform Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/IOT_Platform_Install.md)
 
 ## References
