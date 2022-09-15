@@ -36,14 +36,11 @@ If you need help setting up your personal travel router, you can follow the [Rou
 
 Now you will configure the boot image files that were flashed to the SD card. Copy dietpi.txt and dietpi-wifi.txt to a temporary directory so you can edit them safely. Make sure to save an additional copy if case you need to retrieve the originals.
 - Edit *dietpi-wifi.txt* by typing your router's SSID and password as shown in the following variables. Do not delete the '' punctuation marks.
-
       ```
       aWIFI_SSID[0]='Your router's SSID'
       aWIFI_KEY[0]='The ssid password'
       ```
-
 - Edit *dietpi.txt* to change the configuration to the following values:
-
       ```
       AUTO_SETUP_LOCALE=en_US.UTF-8
       AUTO_SETUP_KEYBOARD_LAYOUT=us
@@ -58,7 +55,6 @@ Now you will configure the boot image files that were flashed to the SD card. Co
       SURVEY_OPTED_IN=0
       CONFIG_SERIAL_CONSOLE_ENABLE=1
       ```
-
 Note that these lines do not appear one after another in the file. You will need to find each variable in the document and change the corresponding value.
 Remember to replace {YOUR_INITIALS} in the AUTO_SETUP_NET_HOSTNAME variable. In my case, I changed the value to *DietPi_HGB*.
 
@@ -88,20 +84,20 @@ You can do this from your Command Prompt using the following command. When promp
 Here I received a notification saying that "The authenticity of host 'IpAdress' can't be established." Type yes to continue to establish the SSH connection.
 
 **Note**: If you are using a GL.iNet GL-MT300N-V2(Mango) you may encounter issues connecting to the DNS server when connected to the Villanova University's WiFi.
-This will result in the automatic updates after the first logon to fail. See the following error that I encountered as a result of VUGuest blocking ping traffic.
+This will result in the automatic updates after the first logon to fail. See the following error that I encountered as a result of VUGuest blocking ping traffic:
 
 ![Connection Error](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/Images/DNS-error.jpg)
 If you encounter this error, I recommended using your phone hotspot or the tethering method to setup the router connection. 
 To learn how to setup **Tethering** on your router, please refer to the following tutorial [Optional Router Setup](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/Setup_Router_Tutorial/OptionalSetup.md)
 
-If your RaspberryPi sucessfully finishes booting up and running the initial updates, you will see the following command screen, where you can type commands from the root account
+If your RaspberryPi sucessfully finishes booting up and running the initial updates, you will see the following command screen, where you can type commands from the root account:
 
 ![Succesful Connection](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/RPI_setup_tutorial/RaspberryPi_Setup/Images/DietPi-initial-updates-finished.JPG)
 
 
 5.Finish configuration of DietPi
 
-- DietPi has two accounts by default "**root**" and "**dietpi**". Please make sure to change the global software password (or root password) from the default *dietpi* to a password of your choice. You can also change the default unix user password.
+- DietPi has two accounts by default "**root**" and "**dietpi**". Please make sure to change the global software password (or root password) from the default *dietpi* to a password of your choice. You can also change the default unix user password, which is also *dietpi*.
 - The RPI will automatically prompt you to update these passwords after the initial updates. 
 - If you are not automatically prompted due to connection issues or you skip this step, you can always change them later by using the *dietPi-config* command to access the configuration menu. There you can press **Security Options** to update both passwords at any time.
 
