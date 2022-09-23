@@ -44,5 +44,23 @@ The steps provided in section 4 of the tutorial were followed and the installati
 
 ## Testing
 
+The tutorial by Professor Schragger also includes a few steps to test the leshan server. By going to the leshan directory and using the command *java -jar leshan-server-demo/target/leshan-server-demo-*-SNAPSHOT-jar-with-dependencies.jar &* you will start the server.
+I then connected to the Leshan demo UI by going to http://192.168.8.232:8080, where 192.168.8.232 is my Raspberry Pi's IP address. Since you have only started the server, you will not see any clients in the UI yet:
 
+![Leshan Server Start](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/15-leshan-server-started-6.JPG)
+
+After starting the server, you can then run the leshan client to register your DietPi host on the lwm2m server. This will result on you RPI being registered as a Temperature client end point, which updates every minute:
+
+![Leshan Client Registration](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/16-leshan-pi-registration-7.JPG)
+
+Selecting the DietPi client will give you the temperature readings:
+
+![DietPi Temperature](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/20-leshan-server-device-temperature-8.JPG)
+
+You can also check the server page to see the server active url, public keys, and certifcate information:
+
+![Leshan Server Info 1](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/17-server-information-9.JPG)
+
+
+![Leshan Server Info 2](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/18-server-information-10.JPG)
 
