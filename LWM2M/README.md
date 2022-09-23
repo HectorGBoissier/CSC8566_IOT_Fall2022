@@ -14,14 +14,21 @@ https://github.com/pschragger/IOT_Tutorials_for_VU/blob/main/RPI_DEVICE_MANAGEME
 The tutorial steps were followed to download and install the software on DietPi. Beside unstable connection and slow download speed, no major issues were encountered.
 
 - Git Install
-Steps followed as tutorial.
-*git --version* command was used to verify install:
+Steps followed as tutorial. The command 
+    ```
+    git --version
+    ```
+ was used to verify install:
 
 ![Git Sucessful Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/4-git-version-installed-1.JPG)
 
 - Java JDK Install
 Steps followed as tutorial.
-Verified install with *java --version* command:
+Verified install with 
+    ```
+    java --version
+    ```
+ command:
 
 ![Java JDK Sucessful Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/7-java-jdk-version-installed-2.JPG)
 
@@ -32,7 +39,11 @@ Here I skipped ahead in the tutorial before downloading maven, as I wanted to en
 - Maven Install
 
 The steps in the tutorial to download and unpack the latest maven tarball were followed as indicated. When setting up the environment variable, I went straight to step *vii* from step *iv* since I downloaded the same maven version in the same download directory.
-Here is the result of testing the maven installation with *mvn -v* command:
+Here is the result of testing the maven installation with 
+    ```
+    mvn -v
+    ```
+ command:
 
 ![Maven Environment Variable](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/12-maven-installation-test-4.JPG)
 
@@ -44,7 +55,11 @@ The steps provided in section 4 of the tutorial were followed and the installati
 
 ## Testing
 
-The tutorial by Professor Schragger also includes a few steps to test the leshan server. By going to the leshan directory and using the command *java -jar leshan-server-demo/target/leshan-server-demo-*-SNAPSHOT-jar-with-dependencies.jar &* you will start the server.
+The tutorial by Professor Schragger also includes a few steps to test the leshan server. By going to the leshan directory and using the command 
+    ```
+    java -jar leshan-server-demo/target/leshan-server-demo-*-SNAPSHOT-jar-with-dependencies.jar &
+    ```
+ you will start the server.
 I then connected to the Leshan demo UI by going to http://192.168.8.232:8080, where 192.168.8.232 is my Raspberry Pi's IP address. Since you have only started the server, you will not see any clients in the UI yet:
 
 ![Leshan Server Start](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/15-leshan-server-started-6.JPG)
