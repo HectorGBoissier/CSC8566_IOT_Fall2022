@@ -14,21 +14,19 @@ https://github.com/pschragger/IOT_Tutorials_for_VU/blob/main/RPI_DEVICE_MANAGEME
 The tutorial steps were followed to download and install the software on DietPi. Beside unstable connection and slow download speed, no major issues were encountered.
 
 - Git Install
-Steps followed as tutorial. The command 
+Steps followed as tutorial. Verified install with the command: 
     ```
     git --version
     ```
- was used to verify install:
 
 ![Git Sucessful Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/4-git-version-installed-1.JPG)
 
 - Java JDK Install
 Steps followed as tutorial.
-Verified install with 
+Verified install with the command:  
     ```
     java --version
     ```
- command:
 
 ![Java JDK Sucessful Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/7-java-jdk-version-installed-2.JPG)
 
@@ -64,7 +62,11 @@ I then connected to the Leshan demo UI by going to http://192.168.8.232:8080, wh
 
 ![Leshan Server Start](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/15-leshan-server-started-6.JPG)
 
-After starting the server, you can then run the leshan client to register your DietPi host on the lwm2m server. This will result on you RPI being registered as a Temperature client end point, which updates every minute:
+After starting the server, you can then run the leshan client to register your DietPi host on the lwm2m server by using the command 
+    ```
+    java -jar leshan-client-demo/target/leshan-client-demo-*-SNAPSHOT-jar-with-dependencies.jar
+    ```
+. This will result on you RPI being registered as a Temperature client end point, which updates every minute:
 
 ![Leshan Client Registration](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/16-leshan-pi-registration-7.JPG)
 
