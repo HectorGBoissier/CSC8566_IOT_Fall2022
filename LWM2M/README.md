@@ -11,10 +11,10 @@ https://github.com/pschragger/IOT_Tutorials_for_VU/blob/main/RPI_DEVICE_MANAGEME
 
 ## Setup
 
-The tutorial steps were followed to download and install the software on DietPi. Beside unstable connection and slow download speed, no major issues were encountered.
+The tutorial steps were followed to download and install the software on the DietPi. Besides unstable connection and slow download speed, no major issues were encountered.
 
 - Git Install
-Steps followed as tutorial. Verified install with the command: 
+Steps followed exactly as the tutorial indicated. Verified install with the command: 
     ```
     git --version
     ```
@@ -22,7 +22,7 @@ Steps followed as tutorial. Verified install with the command:
 ![Git Sucessful Install](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/LWM2M/LWM2M/Images/4-git-version-installed-1.JPG)
 
 - Java JDK Install
-Steps followed as tutorial.
+Tutorial steps were followed to download and install java jdk.
 Verified install with the command:  
     ```
     java --version
@@ -36,7 +36,7 @@ Here I skipped ahead in the tutorial before downloading maven, as I wanted to en
 
 - Maven Install
 
-The steps in the tutorial to download and unpack the latest maven tarball were followed as indicated. When setting up the environment variable, I went straight to step *vii* from step *iv* since I downloaded the same maven version in the same download directory.
+The steps in the tutorial to download and unpack the latest maven tarball were followed as indicated. However, when setting up the environment variable, I skipped from step *iv* to step *vii* since I downloaded the same 3.8.6 maven version and I knew the download directory was the same as the tutorial.
 Here is the result of testing the maven installation with 
     ```
     mvn -v
