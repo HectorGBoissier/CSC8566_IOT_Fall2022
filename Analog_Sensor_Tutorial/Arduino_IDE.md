@@ -21,16 +21,16 @@ You may also need to install the CH340 driver on your laptop for the USB communi
 
 First, wire the circuit components as shown in the following circuit diagram given in the tutorial:
 
-Insert circuit Diagram
+![Circuit Diagram](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Analog_Sensor_Tutorial/Analog_Sensor_Tutorial/images/1-Circuit%20Diagram.JPG)
 
 Also, use the USB cable from the Starter Kit to connect the ESP32 Wrover Module directly into the USB port on your computer. 
 This was the resulting circuit on my ESP32 Wrover Board:
 
-Insert Circuit Picture
+![Circuit Picture](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Analog_Sensor_Tutorial/Analog_Sensor_Tutorial/images/2-Circuit%20Diagram.jpg)
 
 Install the **DHT sensor library for ESPx** on the Arduino IDE by searching "DHT esp" in the Library Manager. Select *Install*
 
-Insert Image
+![Library](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Analog_Sensor_Tutorial/Analog_Sensor_Tutorial/images/0-Install%20library.JPG)
 
 Copy and paste the sample code provided in the C_Tutorial: 
     ```
@@ -68,6 +68,6 @@ Finally, click on the **Upload** Button to compile and flash the code into the E
 
 Humidity and Temperature Sensor code output:
 
-Insert picture
+![Serial Monitor](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Analog_Sensor_Tutorial/Analog_Sensor_Tutorial/images/3-Arduino%20Running%20Output.JPG)
 
 If you would like to see a video of the full setup and code running, please check my post on the Internet of Things Fall 2022 YellowDig Community: [Blopg Post](https://computing-sciences.yellowdig.app/community/62e2eacc-366d-319c-a96d-cf1e0b1d27ef?postId=47424135932456466)
