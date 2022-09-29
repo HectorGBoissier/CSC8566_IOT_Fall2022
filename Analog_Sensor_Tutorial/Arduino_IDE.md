@@ -35,7 +35,7 @@ Install the **DHT sensor library for ESPx** on the Arduino IDE by searching "DHT
 
 Copy and paste the sample code provided in the C_Tutorial: 
 
-    ```
+```
 #include "DHTesp.h"
     
 DHTesp dht; //Define the DHT object
@@ -54,15 +54,16 @@ void loop() {
   " Humidity:" + String(newValues.humidity));
   delay(2000);
 }
-    ```
+```
 
-Note that since I wanted my measurements in Farenheit, I added the conversion formula on the output as shown here:
-    ```
+Note that since I wanted my measurements in Farenheit, I added the conversion formula on the output as shown here: 
+
+```
   Serial.println(" Temperature:" + String((newValues.temperature)*9/5+32) +
   " Humidity:" + String(newValues.humidity));
   delay(2000);
 }
-    ```
+```
 
 Make sure to check under **Tools** that the selected *Board:* is **ESP32 Wrover Module**. The **Upload Speed** has to be set to 115200 and the **USB Port** used by the ESP32 has to be selected as well. In my case, the USB port was *COM3*. If you are unsure, you can check on the *Device Manager* on your PC.
 
@@ -72,4 +73,4 @@ Humidity and Temperature Sensor code output:
 
 ![Serial Monitor](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Analog_Sensor_Tutorial/Analog_Sensor_Tutorial/images/3-Arduino%20Running%20Output.JPG)
 
-If you would like to see a video of the full setup and code running, please check my post on the Internet of Things Fall 2022 YellowDig Community: [Blopg Post](https://computing-sciences.yellowdig.app/community/62e2eacc-366d-319c-a96d-cf1e0b1d27ef?postId=47424135932456466)
+If you would like to see a video of the full setup and code running, please check my post on the Internet of Things Fall 2022 YellowDig Community: [Blog Post](https://computing-sciences.yellowdig.app/community/62e2eacc-366d-319c-a96d-cf1e0b1d27ef?postId=47424135932456466)
