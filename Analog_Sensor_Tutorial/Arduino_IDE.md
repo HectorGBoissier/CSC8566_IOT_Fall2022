@@ -37,10 +37,10 @@ Copy and paste the sample code provided in the C_Tutorial:
 
     ```
 #include "DHTesp.h"
-
+    
 DHTesp dht; //Define the DHT object
 int dhtPin = 13;//Define the dht pin
-
+    
 void setup() {
   dht.setup(dhtPin, DHTesp::DHT11);//Initialize the dht pin and dht object
   Serial.begin(115200); //Set the baud rate to 115200
@@ -57,7 +57,6 @@ void loop() {
     ```
 
 Note that since I wanted my measurements in Farenheit, I added the conversion formula on the output as shown here:
- 
     ```
   Serial.println(" Temperature:" + String((newValues.temperature)*9/5+32) +
   " Humidity:" + String(newValues.humidity));
