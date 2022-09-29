@@ -1,20 +1,73 @@
-# Humidity and Temperature Sensor with Arduino and ESP32
+# DHT11 Setup with Arduino IDE & ESP32 
 
-The C tutorial file that you can download from the Freenove website was used as a reference for this tutorial.
+## Required Hardware
 
-Freenove download URL
+- Laptop or Desktop
+- ESP32 Wrover
+- GPIO Extension Board
+- Breadboard
+- 4x M/M Jumpers
+- 10kOhm Resistor 
+- DHT11
 
-## Requirements
+## Initial Setup and Requirements
 
- ( Assume the reader has already setup a development IDE and solved comm issues) ( you can refer to other tutorials you expect they have completed before trying yours that includes mine or other students or your own) 
-The tutorial steps were followed to download and install the software on the DietPi. Besides unstable connection and slow download speed, no major issues were encountered.
-- Arduino 2.0
-- Freenove Starter Kit
+For this first experiment, I followed the instructions in **Chapter 24 Hygrothermograph DHT11** of the Freenove *C_Tutorial* that I downloaded from [Freenove_Ultimate_Starter_Kit_for_ESP32](https://github.com/Freenove/Freenove_Ultimate_Starter_Kit_for_ESP32). 
+The experiment setup was done using the hardware components provided in the Freenove Starter Kit. The only thing you need besides the kit is your own laptop with the Arduino IDE installed. 
+The *C_Tutorial* file also contains instructions on how to download, install, and configure the Arduino IDE with detailed steps on the **Preface** Chapter.
+You may also need to install the CH340 driver on your laptop for the USB communication with the ESP32 Wrover Module. Instruction on how to install this driver can also be found in the Freenove tutorial.
 
-## Tutorial
+## Setup Steps
 
-- Specs and operation of accessing data of the analog device 
-Install DHT sensor Library for ESPx
-- Circuit diagram of microcontroller to analog device 
-- Software snippet showing GPIO setup and runtime looping and temperature reading and writing results to output. 
-- Images of resulting console and operation. 
+First, wire the circuit components as shown in the following circuit diagram given in the tutorial:
+
+Insert circuit Diagram
+
+Also, use the USB cable from the Starter Kit to connect the ESP32 Wrover Module directly into the USB port on your computer. 
+This was the resulting circuit on my ESP32 Wrover Board:
+
+Insert Circuit Picture
+
+Install the **DHT sensor library for ESPx** on the Arduino IDE by searching "DHT esp" in the Library Manager. Select *Install*
+
+Insert Image
+
+Copy and paste the sample code provided in the C_Tutorial: 
+    ```
+#include "DHTesp.h"
+
+DHTesp dht; //Define the DHT object
+int dhtPin = 13;//Define the dht pin
+
+void setup() {
+  dht.setup(dhtPin, DHTesp::DHT11);//Initialize the dht pin and dht object
+  Serial.begin(115200); //Set the baud rate to 115200
+}
+void loop() {
+  flag:TempAndHumidity newValues = dht.getTempAndHumidity();//Get the Temperature and humidity
+  if (dht.getStatus() != 0) { //Judge if the correct value is read
+    goto flag; //If there is an error, go back to the flag and re-read the data
+  }
+  Serial.println(" Temperature:" + String(newValues.temperature) +
+  " Humidity:" + String(newValues.humidity));
+  delay(2000);
+}
+    ```
+
+Note that since I wanted my measurements in Farenheit, I added the conversion formula on the output as shown here: 
+    ```
+  Serial.println(" Temperature:" + String((newValues.temperature)*9/5+32) +
+  " Humidity:" + String(newValues.humidity));
+  delay(2000);
+}
+    ```
+
+Make sure to check under **Tools** that the selected *Board:* is **ESP32 Wrover Module**. The **Upload Speed** has to be set to 115200 and the **USB Port** used by the ESP32 has to be selected as well. In my case, the USB port was *COM3*. If you are unsure, you can check on the *Device Manager* on your PC.
+
+Finally, click on the **Upload** Button to compile and flash the code into the ESP32 board. To see the output of the Temperature and Humidity measurements you will need to open the **Serial Monitor** window. The icon to open the window is located on the top-right corner of the Arduino IDE, and it looks like a magnifying glass.
+
+Humidity and Temperature Sensor code output:
+
+Insert picture
+
+If you would like to see a video of the full setup and code running, please check my post on the Internet of Things Fall 2022 YellowDig Community: [Blopg Post](https://computing-sciences.yellowdig.app/community/62e2eacc-366d-319c-a96d-cf1e0b1d27ef?postId=47424135932456466)
