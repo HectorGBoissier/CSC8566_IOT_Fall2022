@@ -56,7 +56,8 @@ void loop() {
 }
     ```
 
-Note that since I wanted my measurements in Farenheit, I added the conversion formula on the output as shown here: 
+Note that since I wanted my measurements in Farenheit, I added the conversion formula on the output as shown here:
+ 
     ```
   Serial.println(" Temperature:" + String((newValues.temperature)*9/5+32) +
   " Humidity:" + String(newValues.humidity));
