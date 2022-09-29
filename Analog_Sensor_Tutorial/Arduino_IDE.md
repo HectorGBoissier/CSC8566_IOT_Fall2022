@@ -14,6 +14,7 @@
 
 For this first experiment, I followed the instructions in **Chapter 24 Hygrothermograph DHT11** of the Freenove *C_Tutorial* that I downloaded from [Freenove_Ultimate_Starter_Kit_for_ESP32](https://github.com/Freenove/Freenove_Ultimate_Starter_Kit_for_ESP32). 
 The experiment setup was done using the hardware components provided in the Freenove Starter Kit. The only thing you need besides the kit is your own laptop with the Arduino IDE installed. 
+
 The *C_Tutorial* file also contains instructions on how to download, install, and configure the Arduino IDE with detailed steps on the **Preface** Chapter.
 You may also need to install the CH340 driver on your laptop for the USB communication with the ESP32 Wrover Module. Instruction on how to install this driver can also be found in the Freenove tutorial.
 
@@ -33,6 +34,7 @@ Install the **DHT sensor library for ESPx** on the Arduino IDE by searching "DHT
 ![Library](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Analog_Sensor_Tutorial/Analog_Sensor_Tutorial/images/0-Install%20library.JPG)
 
 Copy and paste the sample code provided in the C_Tutorial: 
+
     ```
 #include "DHTesp.h"
 
