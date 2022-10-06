@@ -11,9 +11,9 @@ You do not need to make any changes to the component configuration for the build
 
 Follow the instructions provided in **Chapter 1 LED** of the [Freenove C_Tutorial](https://github.com/Freenove/Freenove_Ultimate_Starter_Kit_for_ESP32/blob/master/C/C_Tutorial.pdf) to build the LED circuit on the breadboard. See the following diagram and my LED circuit for reference:
 
-![Diagram Picture]()
+![Diagram Picture](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Anjay-leshan/Anjay_Leshan_Client/Images/7-LED-diagram.JPG)
 
-![Circuit Picture]()
+![Circuit Picture](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Anjay-leshan/Anjay_Leshan_Client/Images/8-LED-circuit.jpg)
 
 I recommend wiring the circuit before you connect the ESP32 to the Raspberry Pi and before you flash the anjay code to register the client. 
 
@@ -27,7 +27,7 @@ Next, read the ON/OFF value. Here "false" is off and "true" turns the LED lights
 Now you can experiment and see the effects of change these settings. In particular, try changing the Dimmer value to 10 and then to a high number such as 90, so you can easily observe the change in intensity.
 Please see my blog post on the YellowDig IoT Community where I included two videos on this experiment. 
 
-![Circuit LED On]()
+![Circuit LED On](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Anjay-leshan/Anjay_Leshan_Client/Images/9-LED-circuit-ON.jpg)
 
 ## Push Button 
 
@@ -37,7 +37,7 @@ The same component configuration will be used for this experiment.
 Follow the instructions provided in **Chapter 2 LED & Button** of the [Freenove C_Tutorial](https://github.com/Freenove/Freenove_Ultimate_Starter_Kit_for_ESP32/blob/master/C/C_Tutorial.pdf) to build the LED circuit on the breadboard. To experiment with the Push Button object, you do not need to wire the LED section of the circuit. 
 See the following diagram and image of my button circuit for reference:
 
-![Diagram Picture 2]()
+![Diagram Picture 2](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Anjay-leshan/Anjay_Leshan_Client/Images/10-Button-diagram.JPG)
 
 ![Circuit Picture 2]()
 
