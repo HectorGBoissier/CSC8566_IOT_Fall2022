@@ -8,6 +8,6 @@ The tutorial provided in the [Building an LWM2M clients on RPI for ESP32](https:
 
 The directory includes tutorials on how to:
 
-[Build Anjay LWM2M client](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Anjay-leshan/Anjay_Leshan_Client/Build_Anjay_Client.md)
+1- [Build Anjay LWM2M client](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Anjay-leshan/Anjay_Leshan_Client/Build_Anjay_Client.md)
 
-[Analog Experiment using Anjay client code](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Anjay-leshan/Anjay_Leshan_Client/Anjay_Client_Experiment.md)
+2- [Analog Experiment using Anjay client code](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Anjay-leshan/Anjay_Leshan_Client/Anjay_Client_Experiment.md)

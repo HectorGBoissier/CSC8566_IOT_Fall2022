@@ -2,9 +2,11 @@
 
 This is the continuation of the [Build LWM2M client on RPI for ESP32](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Anjay-leshan/Anjay_Leshan_Client/Build_Anjay_Client.md) tutorial. 
 Now that you are able to successfully register your ESP32 board on your Leshan server, you can experiment with the LwM2M Objects provided in the [Anjay client code](https://github.com/AVSystem/Anjay-esp32-client) by AVSystem.
-In this experiment, the client was build for the ESP32-Wrover and the hardware equipment from the [Freenove Starter Kit](https://github.com/Freenove/Freenove_Ultimate_Starter_Kit_for_ESP32). 
+In this experiment, the client was build for the ESP32-Wrover and circuits were wired with the hardware equipment from the [Freenove Starter Kit](https://github.com/Freenove/Freenove_Ultimate_Starter_Kit_for_ESP32). 
 
 ## Light Control
+
+- Initial Setup
 
 The first Anjay Client object experiment is the **Light control** (/3311) available for *ESP-WROVER-KIT* boards. 
 You do not need to make any changes to the component configuration for the build that we set up in the previous tutorial.
@@ -19,6 +21,8 @@ I recommend wiring the circuit before you connect the ESP32 to the Raspberry Pi 
 
 Note that you can also try this control application without having to setup the external LED circuit. The changes made to the light on the Anjay client will be shown by the Blue LED light on the ESP-Wrover board itself. If you do the full circuit setup, both LED lights will respond to the Write commands sent to the client.  
 
+- Experiment
+
 Now that the circuit is fully set up and the client is registered on the leshan server, you can begin writing commands on the anjay client object.
 Select the registered **anjay-esp32-client** object and click on **Light Control**. This panel has all the possible variables that can be modified to control the light, but we will focus on the **ON/OFF** and the **Dimmer** values.
 
@@ -31,6 +35,8 @@ Please see my blog post on the YellowDig IoT Community where I included two vide
 
 ## Push Button 
 
+- Initial Setup
+
 The second Anjay Client object available for *ESP-WROVER-KIT* boards is the **Push Button** (/3347).
 The same component configuration will be used for this experiment.
 
@@ -40,6 +46,8 @@ See the following diagram and image of my button circuit for reference:
 ![Diagram Picture 2](https://github.com/HectorGBoissier/CSC8566_IOT_Fall2022/blob/Anjay-leshan/Anjay_Leshan_Client/Images/10-Button-diagram.JPG)
 
 ![Circuit Picture 2]()
+
+- Experiment
 
 Select the registered **anjay-esp32-client** object and click on **Push Button**. The value that we will focus on is the **Digital Input Counter**.
 Select Observe* on the top left of the panel first, then push the button on the circuit a couple of times. Wait a couple seconds and then select Read on the input counter. You shoul see the counter increase as shown in the following picture:
