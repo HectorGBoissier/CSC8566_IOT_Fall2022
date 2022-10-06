@@ -5,7 +5,7 @@ Now that you are able to successfully register your ESP32 board on your Leshan s
 
 ## Requirements
 
-In this experiment, the client was build for the ESP32-Wrover and the hardware equipment used comes include in the [Freenove Starter Kit](https://github.com/Freenove/Freenove_Ultimate_Starter_Kit_for_ESP32). 
+In this experiment, the client was build for the ESP32-Wrover and the hardware equipment used came included in the [Freenove Starter Kit](https://github.com/Freenove/Freenove_Ultimate_Starter_Kit_for_ESP32). 
 
 ## Light Control
 
