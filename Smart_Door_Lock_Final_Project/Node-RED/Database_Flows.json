@@ -1,0 +1,897 @@
+[
+    {
+        "id": "db91378d7c6615fe",
+        "type": "tab",
+        "label": "IoT Project DB",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "797b61fd66350b50",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "041363dfa63737cb"
+            ]
+        ]
+    },
+    {
+        "id": "041363dfa63737cb",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Create IoT Project Database",
+        "func": "msg.topic =\"CREATE DATABASE iotdb; commit;\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 140,
+        "wires": [
+            [
+                "3204dce16c0fda81"
+            ]
+        ]
+    },
+    {
+        "id": "453362c1aed10fe5",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 280,
+        "wires": [
+            [
+                "accffa7d8c3637a4"
+            ]
+        ]
+    },
+    {
+        "id": "accffa7d8c3637a4",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Create Building Table",
+        "func": "msg.topic = \"CREATE TABLE building ( building_id INT NOT NULL, building_name VARCHAR(45), address VARCHAR(45), city VARCHAR(45), state VARCHAR(2), zip INT, PRIMARY KEY (building_id));commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 280,
+        "wires": [
+            [
+                "b26c01c6db308669"
+            ]
+        ]
+    },
+    {
+        "id": "3204dce16c0fda81",
+        "type": "mysql",
+        "z": "db91378d7c6615fe",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "Local Database",
+        "x": 720,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "27c65866fd3ac599",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 360,
+        "wires": [
+            [
+                "d014c52563170f4a"
+            ]
+        ]
+    },
+    {
+        "id": "d014c52563170f4a",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Create Room Table",
+        "func": "msg.topic = \"CREATE TABLE room (room_id INT NOT NULL, building_id INT, room_name varchar(45), PRIMARY KEY (room_id), FOREIGN KEY (building_id) REFERENCES building(building_id));commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "b26c01c6db308669"
+            ]
+        ]
+    },
+    {
+        "id": "2c96d8328944ec13",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 440,
+        "wires": [
+            [
+                "c89954cda65c4ad1"
+            ]
+        ]
+    },
+    {
+        "id": "c89954cda65c4ad1",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Create Door Lock Table",
+        "func": "msg.topic = \"CREATE TABLE door_lock ( door_lock_id INT NOT NULL, room_id INT, passcode varchar(4), PRIMARY KEY (door_lock_id), FOREIGN KEY (room_id) REFERENCES room(room_id));commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 440,
+        "wires": [
+            [
+                "b26c01c6db308669"
+            ]
+        ]
+    },
+    {
+        "id": "960a03b49c915256",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 520,
+        "wires": [
+            [
+                "1566740ba70b9fb8"
+            ]
+        ]
+    },
+    {
+        "id": "1566740ba70b9fb8",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Create Keypad Table",
+        "func": "msg.topic = \"CREATE TABLE keypad ( keypad_id INT NOT NULL, door_lock_id INT, keypad_reading VARCHAR(4), date_time_recorded DATETIME, PRIMARY KEY (keypad_id), FOREIGN KEY (door_lock_id) REFERENCES door_lock(door_lock_id));commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 520,
+        "wires": [
+            [
+                "b26c01c6db308669"
+            ]
+        ]
+    },
+    {
+        "id": "dd781aac26906b00",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 600,
+        "wires": [
+            [
+                "cbc8a8f94b3ee7bc"
+            ]
+        ]
+    },
+    {
+        "id": "cbc8a8f94b3ee7bc",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Create LED Table",
+        "func": "msg.topic = \"CREATE TABLE led(led_id INT NOT NULL, door_lock_id INT, light_status ENUM('ON','OFF'), date_time_activated DATETIME, date_time_deactivated DATETIME, PRIMARY KEY(led_id), FOREIGN KEY(door_lock_id) REFERENCES door_lock(door_lock_id));commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 600,
+        "wires": [
+            [
+                "b26c01c6db308669"
+            ]
+        ]
+    },
+    {
+        "id": "a1d218aec653e65a",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 680,
+        "wires": [
+            [
+                "cbaa41da596ca00a"
+            ]
+        ]
+    },
+    {
+        "id": "cbaa41da596ca00a",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Create Servo Motor Table",
+        "func": "msg.topic = \"CREATE TABLE servo_motor ( servo_motor_id INT NOT NULL, door_lock_id INT, motor_value ENUM('0','90'), date_time_activated DATETIME, date_time_deactivated DATETIME, PRIMARY KEY (servo_motor_id), FOREIGN KEY (door_lock_id) REFERENCES door_lock(door_lock_id));commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 680,
+        "wires": [
+            [
+                "b26c01c6db308669"
+            ]
+        ]
+    },
+    {
+        "id": "f1299f2e82a319bb",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 760,
+        "wires": [
+            [
+                "08d6372b36d8c434"
+            ]
+        ]
+    },
+    {
+        "id": "08d6372b36d8c434",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Create Report Failed Attemps Table",
+        "func": "msg.topic = \"CREATE TABLE report_failed_attempts ( attempt_id INT NOT NULL AUTO_INCREMENT, door_lock_id INT, keypad_id INT, passcode_attempt VARCHAR(4), date_time_attempt DATETIME, PRIMARY KEY (attempt_id), FOREIGN KEY (door_lock_id) REFERENCES door_lock(door_lock_id), FOREIGN KEY (keypad_id) REFERENCES keypad(keypad_id));commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 760,
+        "wires": [
+            [
+                "b26c01c6db308669"
+            ]
+        ]
+    },
+    {
+        "id": "b26c01c6db308669",
+        "type": "mysql",
+        "z": "db91378d7c6615fe",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 880,
+        "y": 480,
+        "wires": [
+            [
+                "8039977a5f9b889e"
+            ]
+        ]
+    },
+    {
+        "id": "8039977a5f9b889e",
+        "type": "debug",
+        "z": "db91378d7c6615fe",
+        "name": "Debug output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "15d8d2f96deff5cd",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Insert into Building",
+        "func": "msg.topic = \"INSERT INTO building VALUES (1, 'Mendel Science Center','800 E. Lancaster Avenue', 'Villanova', 'PA', 19085);commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 900,
+        "wires": [
+            [
+                "c9b05819cd5c358a"
+            ]
+        ]
+    },
+    {
+        "id": "060de916c14ce243",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 900,
+        "wires": [
+            [
+                "15d8d2f96deff5cd"
+            ]
+        ]
+    },
+    {
+        "id": "c9b05819cd5c358a",
+        "type": "mysql",
+        "z": "db91378d7c6615fe",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 630,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "32b818d5bc06edbf",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Insert into Room",
+        "func": "msg.topic = \"INSERT INTO room VALUES (1, 1, 'G87');commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 980,
+        "wires": [
+            [
+                "77e7d171521b6db2"
+            ]
+        ]
+    },
+    {
+        "id": "d2e1ab5efe8c089a",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 980,
+        "wires": [
+            [
+                "32b818d5bc06edbf"
+            ]
+        ]
+    },
+    {
+        "id": "77e7d171521b6db2",
+        "type": "mysql",
+        "z": "db91378d7c6615fe",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 630,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aa5e66ad05b0131b",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Insert into Door Lock",
+        "func": "msg.topic = \"INSERT INTO door_lock VALUES (1, 1, '1234');commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1060,
+        "wires": [
+            [
+                "73f08ccd6908d968"
+            ]
+        ]
+    },
+    {
+        "id": "5374cf1ba54679eb",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 1060,
+        "wires": [
+            [
+                "aa5e66ad05b0131b"
+            ]
+        ]
+    },
+    {
+        "id": "73f08ccd6908d968",
+        "type": "mysql",
+        "z": "db91378d7c6615fe",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 630,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1b8b6b877782f097",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Insert into Keypad",
+        "func": "msg.topic = \"INSERT INTO keypad VALUES (1, 1, '1234', (Select now()));commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1140,
+        "wires": [
+            [
+                "8f6432eccae2fba4"
+            ]
+        ]
+    },
+    {
+        "id": "0b71a8658eba59f5",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 1140,
+        "wires": [
+            [
+                "1b8b6b877782f097"
+            ]
+        ]
+    },
+    {
+        "id": "8f6432eccae2fba4",
+        "type": "mysql",
+        "z": "db91378d7c6615fe",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 630,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0e06b9940c861c88",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Insert into LED",
+        "func": "msg.topic = \"INSERT INTO led VALUES (1, 1, 'OFF',(SELECT now()),(SELECT now()));commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1220,
+        "wires": [
+            [
+                "e27c8cde0b2d852d"
+            ]
+        ]
+    },
+    {
+        "id": "faf18d65152cee82",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 1220,
+        "wires": [
+            [
+                "0e06b9940c861c88"
+            ]
+        ]
+    },
+    {
+        "id": "e27c8cde0b2d852d",
+        "type": "mysql",
+        "z": "db91378d7c6615fe",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 590,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "63ed24086cba5f6a",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Insert into Servo Motor",
+        "func": "msg.topic = \"INSERT INTO servo_motor VALUES (1, 1, '0', (Select now()), (Select now()));commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 1300,
+        "wires": [
+            [
+                "f96e3f1fbd3c3a20"
+            ]
+        ]
+    },
+    {
+        "id": "52a080bedf05d23c",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 1300,
+        "wires": [
+            [
+                "63ed24086cba5f6a"
+            ]
+        ]
+    },
+    {
+        "id": "f96e3f1fbd3c3a20",
+        "type": "mysql",
+        "z": "db91378d7c6615fe",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 650,
+        "y": 1300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a14cde1118956f35",
+        "type": "function",
+        "z": "db91378d7c6615fe",
+        "name": "Insert into Report Failed Attempts",
+        "func": "//msg.payload = {}\n//msg.payload.userToChange = 42;\n//msg.payload.newUsername = \"example-user\";\nmsg.topic = \"INSERT INTO report_failed_attempts(`door_lock_id`, `keypad_id`, `passcode_attempt`, `date_time_attempt`) VALUES(1, 1, 1324, (SELECT now())); commit;\"\n//msg.topic = \"INSERT INTO users (`userid`, `username`) VALUES (:userToChange, :newUsername) ON DUPLICATE KEY UPDATE `username`=:newUsername;commit;\"\n\n/*const temp = msg.payload;\nmsg.payload = [temp];\nmsg.topic = \"INSERT INTO temperature(`temperature`) VALUES (?)\";\nreturn msg;*/\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 1380,
+        "wires": [
+            [
+                "197ab6d8fae932a5"
+            ]
+        ]
+    },
+    {
+        "id": "fde9d991ef3eef5e",
+        "type": "inject",
+        "z": "db91378d7c6615fe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 1380,
+        "wires": [
+            [
+                "a14cde1118956f35"
+            ]
+        ]
+    },
+    {
+        "id": "197ab6d8fae932a5",
+        "type": "mysql",
+        "z": "db91378d7c6615fe",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 710,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a5e91c786e3fb3d0",
+        "type": "comment",
+        "z": "db91378d7c6615fe",
+        "name": "Insert Statement for first entry",
+        "info": "",
+        "x": 250,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "a8bd5936f693c2de",
+        "type": "comment",
+        "z": "db91378d7c6615fe",
+        "name": "Create Tables",
+        "info": "",
+        "x": 220,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "29777ab67630c629",
+        "type": "comment",
+        "z": "db91378d7c6615fe",
+        "name": "Create Database",
+        "info": "",
+        "x": 230,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4b6fd8536710e3bf",
+        "type": "MySQLdatabase",
+        "name": "iotdb",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "iotdb",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]
