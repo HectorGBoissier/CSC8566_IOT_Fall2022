@@ -1,4 +1,4 @@
-# Node-RED
+# phpMyAdmin
 
 The Web Server used in this project is phpMyAdmin, which is a free and open source administration tool for MySQL and MariaDB.
 This tool works as a portable web application written primarily in PHP and it provides great MySQL administration tools.
