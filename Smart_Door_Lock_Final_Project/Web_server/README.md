@@ -1,9 +1,7 @@
 # Node-RED
 
-This directory contains the JSON filesz to import the flows used in the final project.
-See the Node-RED and MySQL tutorials by Professor Schragger on how to install and set them up.
-
-[Node-RED Tutorial](https://github.com/pschragger/VU_IOT_2022_Final_Project/tree/main/Installation_Tutorials/NodeRed_installation_Tutorial)
-
-[MySQL Tutorial](https://github.com/pschragger/VU_IOT_2022_Final_Project/tree/main/Installation_Tutorials/MYSQL_Installation_Tutorial)
+The Web Server used in this project is phpMyAdmin, which is a free and open source administration tool for MySQL and MariaDB.
+This tool works as a portable web application written primarily in PHP and it provides great MySQL administration tools.
+I installed this server on my Windows laptop with XAMPP, which you can easily download and setup following this link:
+https://www.apachefriends.org/download.html
 
