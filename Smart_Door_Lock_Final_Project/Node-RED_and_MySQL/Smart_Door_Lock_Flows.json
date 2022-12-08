@@ -1,0 +1,940 @@
+[
+    {
+        "id": "7877c919252456f0",
+        "type": "tab",
+        "label": "IoT Final Project",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "63304fa22947a904",
+        "type": "comment",
+        "z": "7877c919252456f0",
+        "name": "IoT Final Project",
+        "info": "1) ESP32 publishes sensor keypad data\n2) Flow will retrieve current passcode \n3) User input validated with DB value\n4) Successful match will trigger lock\n5) Failed attempt will be recorded",
+        "x": 250,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "9edc0822b3d70f4a",
+        "type": "split",
+        "z": "7877c919252456f0",
+        "name": "",
+        "splt": "/",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 410,
+        "y": 180,
+        "wires": [
+            [
+                "4f7bc78d97b3afaa"
+            ]
+        ]
+    },
+    {
+        "id": "4f7bc78d97b3afaa",
+        "type": "switch",
+        "z": "7877c919252456f0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "index",
+                "v": "0",
+                "vt": "num",
+                "v2": "0",
+                "v2t": "num"
+            },
+            {
+                "t": "index",
+                "v": "1",
+                "vt": "num",
+                "v2": "1",
+                "v2t": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 180,
+        "wires": [
+            [
+                "331713e351bf2303"
+            ],
+            [
+                "b5dca2a06402ec1c",
+                "0fafb7b3f2dd1aa5"
+            ]
+        ]
+    },
+    {
+        "id": "f08c08582256ff53",
+        "type": "mqtt in",
+        "z": "7877c919252456f0",
+        "name": "/sensor/keypad",
+        "topic": "/sensor/keypad",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "7bdc53f656a1bdf5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 180,
+        "wires": [
+            [
+                "9edc0822b3d70f4a"
+            ]
+        ]
+    },
+    {
+        "id": "331713e351bf2303",
+        "type": "function",
+        "z": "7877c919252456f0",
+        "name": "Select Passcode",
+        "func": "const door_id = msg.payload;\nmsg.payload = [door_id];\nmsg.topic = \"SELECT passcode FROM door_lock WHERE door_lock_id =?\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 140,
+        "wires": [
+            [
+                "f781aff12f88c967"
+            ]
+        ]
+    },
+    {
+        "id": "f781aff12f88c967",
+        "type": "mysql",
+        "z": "7877c919252456f0",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 1040,
+        "y": 140,
+        "wires": [
+            [
+                "34f7fb49a2958809"
+            ]
+        ]
+    },
+    {
+        "id": "34f7fb49a2958809",
+        "type": "json",
+        "z": "7877c919252456f0",
+        "name": "JSON Door Passcode",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1280,
+        "y": 140,
+        "wires": [
+            [
+                "5c01645a3c5f99cd"
+            ]
+        ]
+    },
+    {
+        "id": "5c01645a3c5f99cd",
+        "type": "change",
+        "z": "7877c919252456f0",
+        "name": "Create Passcode Flow Variable",
+        "rules": [
+            {
+                "t": "set",
+                "p": "passcode",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1580,
+        "y": 140,
+        "wires": [
+            [
+                "de7a72a3e2625be8"
+            ]
+        ]
+    },
+    {
+        "id": "de7a72a3e2625be8",
+        "type": "debug",
+        "z": "7877c919252456f0",
+        "name": "Passcode Flow Variable",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1890,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "de476cfa02a20679",
+        "type": "function",
+        "z": "7877c919252456f0",
+        "name": "Format Input for Passcode Check",
+        "func": "msg.payload = '[{\"passcode\":\"'+msg.payload+'\"}]'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 500,
+        "wires": [
+            [
+                "7b2297326e146686"
+            ]
+        ]
+    },
+    {
+        "id": "7b2297326e146686",
+        "type": "json",
+        "z": "7877c919252456f0",
+        "name": "JSON Input",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 1180,
+        "y": 500,
+        "wires": [
+            [
+                "e9417acfe8f20ea3"
+            ]
+        ]
+    },
+    {
+        "id": "e9417acfe8f20ea3",
+        "type": "switch",
+        "z": "7877c919252456f0",
+        "name": "Validate Input",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "passcode",
+                "vt": "flow"
+            },
+            {
+                "t": "neq",
+                "v": "passcode",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1370,
+        "y": 500,
+        "wires": [
+            [
+                "2692080a3b2e095f"
+            ],
+            [
+                "efe2666f3be51b87"
+            ]
+        ]
+    },
+    {
+        "id": "2692080a3b2e095f",
+        "type": "template",
+        "z": "7877c919252456f0",
+        "name": "Right Passcode",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "RIGHT",
+        "output": "str",
+        "x": 1590,
+        "y": 420,
+        "wires": [
+            [
+                "3b09dd8e2ccaaa10",
+                "996678e2d74e1660"
+            ]
+        ]
+    },
+    {
+        "id": "3b09dd8e2ccaaa10",
+        "type": "debug",
+        "z": "7877c919252456f0",
+        "name": "Reply should be RIGHT",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1880,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b5dca2a06402ec1c",
+        "type": "change",
+        "z": "7877c919252456f0",
+        "name": "Create Keypad Input Flow Variable",
+        "rules": [
+            {
+                "t": "set",
+                "p": "input",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 260,
+        "wires": [
+            [
+                "2e612d3dd81bddf1"
+            ]
+        ]
+    },
+    {
+        "id": "2e612d3dd81bddf1",
+        "type": "debug",
+        "z": "7877c919252456f0",
+        "name": "Input Flow Variable",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "bb8d9d38a98a4912",
+        "type": "complete",
+        "z": "7877c919252456f0",
+        "name": "Trigger",
+        "scope": [
+            "5c01645a3c5f99cd"
+        ],
+        "uncaught": false,
+        "x": 200,
+        "y": 500,
+        "wires": [
+            [
+                "e1cc73e8946ca61c"
+            ]
+        ]
+    },
+    {
+        "id": "8390c39e1b5e5a2a",
+        "type": "function",
+        "z": "7877c919252456f0",
+        "name": "Insert into Report_Failed_Attempts",
+        "func": "const input = msg.payload;\nmsg.payload = [input];\nmsg.topic = \"INSERT INTO report_failed_attempts(`door_lock_id`, `keypad_id`, `passcode_attempt`, `date_time_attempt`) VALUES(1, 1, ?, (SELECT now())); commit;\"\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 920,
+        "wires": [
+            [
+                "73a63f2fc9dfe5e7"
+            ]
+        ]
+    },
+    {
+        "id": "73a63f2fc9dfe5e7",
+        "type": "mysql",
+        "z": "7877c919252456f0",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 1250,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6f806baa8071438",
+        "type": "change",
+        "z": "7877c919252456f0",
+        "name": "Input Flow variable",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "input",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 500,
+        "wires": [
+            [
+                "de476cfa02a20679"
+            ]
+        ]
+    },
+    {
+        "id": "e1cc73e8946ca61c",
+        "type": "function",
+        "z": "7877c919252456f0",
+        "name": "Message container",
+        "func": "msg.payload={};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 500,
+        "wires": [
+            [
+                "f6f806baa8071438"
+            ]
+        ]
+    },
+    {
+        "id": "4a13a30339397813",
+        "type": "function",
+        "z": "7877c919252456f0",
+        "name": "Message container",
+        "func": "msg.payload={};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 920,
+        "wires": [
+            [
+                "6f33281b27938435"
+            ]
+        ]
+    },
+    {
+        "id": "6f33281b27938435",
+        "type": "change",
+        "z": "7877c919252456f0",
+        "name": "Input Flow variable",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "input",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 920,
+        "wires": [
+            [
+                "8390c39e1b5e5a2a"
+            ]
+        ]
+    },
+    {
+        "id": "996678e2d74e1660",
+        "type": "mqtt out",
+        "z": "7877c919252456f0",
+        "name": "/actuator/servo",
+        "topic": "/actuator/servo",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7bdc53f656a1bdf5",
+        "x": 1850,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "efe2666f3be51b87",
+        "type": "template",
+        "z": "7877c919252456f0",
+        "name": "Wrong Passcode",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "WRONG",
+        "output": "str",
+        "x": 1600,
+        "y": 580,
+        "wires": [
+            [
+                "5b24a4644725c6e1",
+                "130b98f305267b0e"
+            ]
+        ]
+    },
+    {
+        "id": "5b24a4644725c6e1",
+        "type": "mqtt out",
+        "z": "7877c919252456f0",
+        "name": "/actuator/servo",
+        "topic": "/actuator/servo",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7bdc53f656a1bdf5",
+        "x": 1850,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "130b98f305267b0e",
+        "type": "debug",
+        "z": "7877c919252456f0",
+        "name": "Reply should be WRONG",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1890,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "81038efbe20e9eb1",
+        "type": "complete",
+        "z": "7877c919252456f0",
+        "name": "Trigger",
+        "scope": [
+            "efe2666f3be51b87"
+        ],
+        "uncaught": false,
+        "x": 200,
+        "y": 920,
+        "wires": [
+            [
+                "4a13a30339397813"
+            ]
+        ]
+    },
+    {
+        "id": "8caf11783cf34200",
+        "type": "mqtt in",
+        "z": "7877c919252456f0",
+        "name": "/actuator/servo/value",
+        "topic": "/actuator/servo/value",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "7bdc53f656a1bdf5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 700,
+        "wires": [
+            [
+                "e52c5dc0d97cf57c",
+                "07126a591dea9215"
+            ]
+        ]
+    },
+    {
+        "id": "e52c5dc0d97cf57c",
+        "type": "debug",
+        "z": "7877c919252456f0",
+        "name": "Updated Servo Value",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "abdc489c78511579",
+        "type": "function",
+        "z": "7877c919252456f0",
+        "name": "Update motor_value to 0",
+        "func": "msg.topic = \"UPDATE servo_motor as S_New , servo_motor AS S_Old SET S_New.motor_value = '0', S_New.date_time_deactivated = S_Old.date_time_activated, S_New.date_time_activated = (SELECT now()) WHERE S_New.door_lock_id = 1; commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 640,
+        "wires": [
+            [
+                "d27e5a1e21b34aea"
+            ]
+        ]
+    },
+    {
+        "id": "d27e5a1e21b34aea",
+        "type": "mysql",
+        "z": "7877c919252456f0",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 1230,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "07126a591dea9215",
+        "type": "switch",
+        "z": "7877c919252456f0",
+        "name": "Validate Input",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "90",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 670,
+        "y": 700,
+        "wires": [
+            [
+                "abdc489c78511579"
+            ],
+            [
+                "b865fd0c03b3a136"
+            ]
+        ]
+    },
+    {
+        "id": "b865fd0c03b3a136",
+        "type": "function",
+        "z": "7877c919252456f0",
+        "name": "Update motor_value to 90",
+        "func": "msg.topic = \"UPDATE servo_motor as S_New , servo_motor AS S_Old SET S_New.motor_value = '90', S_New.date_time_deactivated = S_Old.date_time_activated, S_New.date_time_activated = (SELECT now()) WHERE S_New.door_lock_id = 1; commit;\"\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 760,
+        "wires": [
+            [
+                "d27e5a1e21b34aea"
+            ]
+        ]
+    },
+    {
+        "id": "0fafb7b3f2dd1aa5",
+        "type": "function",
+        "z": "7877c919252456f0",
+        "name": "Update keypad reading on Keypad table",
+        "func": "const reading = msg.payload;\nmsg.payload = [reading];\nmsg.topic = \"UPDATE keypad SET keypad_reading = ?, date_time_recorded = (SELECT now()) WHERE door_lock_id = 1; commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 320,
+        "wires": [
+            [
+                "b3ebb07c6fb409ed"
+            ]
+        ]
+    },
+    {
+        "id": "b3ebb07c6fb409ed",
+        "type": "mysql",
+        "z": "7877c919252456f0",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 1190,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "50bfec069a4e496d",
+        "type": "function",
+        "z": "7877c919252456f0",
+        "name": "Update Passcode to 1235",
+        "func": "msg.topic = \"UPDATE door_lock SET passcode = '1235' WHERE door_lock_id = 1;commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1340,
+        "wires": [
+            [
+                "7966cbd163d01893"
+            ]
+        ]
+    },
+    {
+        "id": "d2facb99fe9fab0e",
+        "type": "inject",
+        "z": "7877c919252456f0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 1340,
+        "wires": [
+            [
+                "50bfec069a4e496d"
+            ]
+        ]
+    },
+    {
+        "id": "7966cbd163d01893",
+        "type": "mysql",
+        "z": "7877c919252456f0",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 750,
+        "y": 1340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29597501f2856b95",
+        "type": "function",
+        "z": "7877c919252456f0",
+        "name": "Update Passcode to 1234",
+        "func": "msg.topic = \"UPDATE door_lock SET passcode = '1234' WHERE door_lock_id = 1;commit;\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1400,
+        "wires": [
+            [
+                "51247ea779b58ea1"
+            ]
+        ]
+    },
+    {
+        "id": "a7cbe8c1b2bfa814",
+        "type": "inject",
+        "z": "7877c919252456f0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 1400,
+        "wires": [
+            [
+                "29597501f2856b95"
+            ]
+        ]
+    },
+    {
+        "id": "51247ea779b58ea1",
+        "type": "mysql",
+        "z": "7877c919252456f0",
+        "mydb": "4b6fd8536710e3bf",
+        "name": "IoT Project DB",
+        "x": 750,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a0f943dc2eb61350",
+        "type": "comment",
+        "z": "7877c919252456f0",
+        "name": "Subscribed to Keypad Sensor Data",
+        "info": "1) ESP32 publishes sensor keypad data\n2) Flow will retrieve current passcode \n3) User input validated with DB value\n4) Successful match will trigger lock\n5) Failed attempt will be recorded",
+        "x": 310,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5e19d17033661592",
+        "type": "comment",
+        "z": "7877c919252456f0",
+        "name": "Validation begins after retrieving the Current Passcode",
+        "info": "1) ESP32 publishes sensor keypad data\n2) Flow will retrieve current passcode \n3) User input validated with DB value\n4) Successful match will trigger lock\n5) Failed attempt will be recorded",
+        "x": 380,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "30d3b2f4161e2fa8",
+        "type": "comment",
+        "z": "7877c919252456f0",
+        "name": "Triggers only after Wrong Passcode",
+        "info": "1) ESP32 publishes sensor keypad data\n2) Flow will retrieve current passcode \n3) User input validated with DB value\n4) Successful match will trigger lock\n5) Failed attempt will be recorded",
+        "x": 300,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "c0e540590119e436",
+        "type": "comment",
+        "z": "7877c919252456f0",
+        "name": "Updates DB value after lock activates",
+        "info": "1) ESP32 publishes sensor keypad data\n2) Flow will retrieve current passcode \n3) User input validated with DB value\n4) Successful match will trigger lock\n5) Failed attempt will be recorded",
+        "x": 320,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "3c42c2333d54d20a",
+        "type": "comment",
+        "z": "7877c919252456f0",
+        "name": "Update Passcode stored on DB",
+        "info": "1) ESP32 publishes sensor keypad data\n2) Flow will retrieve current passcode \n3) User input validated with DB value\n4) Successful match will trigger lock\n5) Failed attempt will be recorded",
+        "x": 280,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "6cc0752cb1f6c85d",
+        "type": "comment",
+        "z": "7877c919252456f0",
+        "name": "Message sent is split into Door Lock ID & Input",
+        "info": "1) ESP32 publishes sensor keypad data\n2) Flow will retrieve current passcode \n3) User input validated with DB value\n4) Successful match will trigger lock\n5) Failed attempt will be recorded",
+        "x": 760,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7bdc53f656a1bdf5",
+        "type": "mqtt-broker",
+        "name": "Dietpi mqtt",
+        "broker": "192.168.8.232",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "4b6fd8536710e3bf",
+        "type": "MySQLdatabase",
+        "name": "iotdb",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "iotdb",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]
